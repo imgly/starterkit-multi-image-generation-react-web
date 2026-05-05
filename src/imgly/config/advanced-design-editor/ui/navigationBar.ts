@@ -76,10 +76,7 @@ export function setupNavigationBar(cesdk: CreativeEditorSDK): void {
     'ly.img.preview.navigationBar',
     {
       id: 'ly.img.actions.navigationBar',
-      children: [
-        'ly.img.exportImage.navigationBar',
-        'ly.img.exportPDF.navigationBar'
-      ]
+      children: ['ly.img.saveScene.navigationBar']
     }
   ]);
   // #endregion

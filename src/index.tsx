@@ -12,7 +12,7 @@ import type { Configuration } from '@cesdk/cesdk-js';
 import type CreativeEngine from '@cesdk/engine';
 import { createRoot } from 'react-dom/client';
 
-import { initHeadlessEngine } from './imgly';
+import { initMultiImageGenerationHeadlessEngine } from './imgly';
 import App from './app/App';
 
 // ============================================================================
@@ -36,7 +36,10 @@ const config: Partial<Configuration> = {
 
 async function main(): Promise<void> {
   // Initialize headless engine for batch image generation
-  const engine = await initHeadlessEngine();
+  const engine = await initMultiImageGenerationHeadlessEngine({
+    license: config.license,
+    baseURL: config.baseURL
+  });
 
   // Debug access (remove in production)
   (window as unknown as { engine: CreativeEngine }).engine = engine;
