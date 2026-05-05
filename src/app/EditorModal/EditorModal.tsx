@@ -106,15 +106,11 @@ export default function EditorModal({
               }
             );
 
-            // Register save action and add save button
-            cesdk.actions.register('save', async () => {
+            // Override default save action and add save button
+            cesdk.actions.register('saveScene', async () => {
               const savedScene = await cesdk.engine.scene.saveToString();
               onSave(savedScene);
             });
-            cesdk.ui.insertOrderComponent(
-              { in: 'ly.img.navigation.bar', position: 'end' },
-              { id: 'ly.img.save.navigationBar' }
-            );
 
             // Load scene
             await cesdk.loadFromString(sceneToLoad);

@@ -61,11 +61,16 @@ export { hexToRgba, replaceImageByName, exportSceneAsImage } from './utils';
 /**
  * Initialize a headless CE.SDK engine with standard asset sources.
  */
-export async function initMultiImageGenerationHeadlessEngine(): Promise<CreativeEngine> {
+export async function initMultiImageGenerationHeadlessEngine(
+  options: { license?: string; baseURL?: string } = {}
+): Promise<CreativeEngine> {
   const config = {
-    ...(import.meta.env.CESDK_USE_LOCAL && {
-      baseURL: import.meta.env.VITE_CESDK_ASSETS_BASE_URL
-    })
+    ...(options.license != null && { license: options.license }),
+    ...(options.baseURL != null
+      ? { baseURL: options.baseURL }
+      : import.meta.env.CESDK_USE_LOCAL && {
+          baseURL: import.meta.env.VITE_CESDK_ASSETS_BASE_URL
+        })
   };
 
   const engine = await CreativeEngine.init(config);
