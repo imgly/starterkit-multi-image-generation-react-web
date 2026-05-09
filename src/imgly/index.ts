@@ -66,11 +66,7 @@ export async function initMultiImageGenerationHeadlessEngine(
 ): Promise<CreativeEngine> {
   const config = {
     ...(options.license != null && { license: options.license }),
-    ...(options.baseURL != null
-      ? { baseURL: options.baseURL }
-      : import.meta.env.CESDK_USE_LOCAL && {
-          baseURL: import.meta.env.VITE_CESDK_ASSETS_BASE_URL
-        })
+    ...(options.baseURL != null && { baseURL: options.baseURL })
   };
 
   const engine = await CreativeEngine.init(config);
