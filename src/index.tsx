@@ -21,13 +21,13 @@ import App from './app/App';
 
 const config: Partial<Configuration> = {
   // Unique user identifier for analytics (customize for your app)
-  userId: 'starterkit-multi-image-generation-user'
+  userId: 'starterkit-multi-image-generation-user',
 
   // Local assets (uncomment and set path for self-hosted assets)
-  // baseURL: `/assets/`,
 
-  // License key (required for production)
-  // license: 'YOUR_LICENSE_KEY'
+
+  // Development: use local assets when CESDK_USE_LOCAL is set
+  
 };
 
 // ============================================================================

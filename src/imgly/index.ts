@@ -30,6 +30,7 @@ import CreativeEngine from '@cesdk/engine';
 
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -66,16 +67,13 @@ export async function initMultiImageGenerationHeadlessEngine(
 ): Promise<CreativeEngine> {
   const config = {
     ...(options.license != null && { license: options.license }),
-    ...(options.baseURL != null
-      ? { baseURL: options.baseURL }
-      : import.meta.env.CESDK_USE_LOCAL && {
-          baseURL: import.meta.env.VITE_CESDK_ASSETS_BASE_URL
-        })
+    ...(options.baseURL != null && { baseURL: options.baseURL })
   };
 
   const engine = await CreativeEngine.init(config);
 
   // Add standard asset source plugins
+  await engine.addPlugin(new ImageColorsAssetSource());
   await engine.addPlugin(new ColorPaletteAssetSource());
   await engine.addPlugin(new TypefaceAssetSource());
   await engine.addPlugin(new TextAssetSource());
@@ -130,6 +128,7 @@ export async function initMultiImageGenerationDesignEditor(
 
   // Add asset source plugins
   await cesdk.addPlugin(new BlurAssetSource());
+  await cesdk.addPlugin(new ImageColorsAssetSource());
   await cesdk.addPlugin(new ColorPaletteAssetSource());
   await cesdk.addPlugin(new CropPresetsAssetSource());
   await cesdk.addPlugin(
@@ -172,6 +171,7 @@ export async function initMultiImageGenerationAdvancedDesignEditor(
 
   // Add asset source plugins
   await cesdk.addPlugin(new BlurAssetSource());
+  await cesdk.addPlugin(new ImageColorsAssetSource());
   await cesdk.addPlugin(new ColorPaletteAssetSource());
   await cesdk.addPlugin(new CropPresetsAssetSource());
   await cesdk.addPlugin(

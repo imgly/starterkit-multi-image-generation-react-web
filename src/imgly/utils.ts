@@ -30,18 +30,16 @@ export function replaceImageByName(
   blockName: string,
   imageUrl: string
 ): void {
-  const blocks = engine.block.findByName(blockName);
-  if (blocks.length === 0) return;
-
-  const block = blocks[0];
-  if (!engine.block.supportsFill(block)) return;
+  const [block] = engine.block.findByName(blockName);
+  if (block == null || !engine.block.supportsFill(block)) return;
 
   const fillBlock = engine.block.getFill(block);
-  if (engine.block.getType(fillBlock) === '//ly.img.ubq/fill/image') {
-    engine.block.setSourceSet(fillBlock, 'fill/image/sourceSet', [
-      { uri: imageUrl, width: 0, height: 0 }
-    ]);
-    engine.block.setString(fillBlock, 'fill/image/imageFileURI', imageUrl);
+  if (engine.block.getType(fillBlock) !== '//ly.img.ubq/fill/image') return;
+
+  engine.block.setString(fillBlock, 'fill/image/imageFileURI', imageUrl);
+  engine.block.resetCrop(block);
+  if (engine.block.supportsContentFillMode(block)) {
+    engine.block.setContentFillMode(block, 'Cover');
   }
 }
 
