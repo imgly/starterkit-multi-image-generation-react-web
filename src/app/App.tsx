@@ -39,6 +39,7 @@ function createInitialAssets(): GeneratedAsset[] {
 
 import type { Configuration } from '@cesdk/cesdk-js';
 
+
 interface AppProps {
   /** Initialized headless engine for batch image generation */
   engine: CreativeEngine;

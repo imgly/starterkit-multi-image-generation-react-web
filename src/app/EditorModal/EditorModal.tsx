@@ -21,6 +21,7 @@ import SCENES from '../scenes.json';
 
 import styles from './EditorModal.module.css';
 
+
 interface EditorModalProps {
   isOpen: boolean;
   template: Template | null;
