@@ -16,11 +16,10 @@ import {
   initMultiImageGenerationAdvancedDesignEditor,
   applyRestaurantColors
 } from '../../imgly';
-import type { Restaurant, Template } from '../../imgly';
+import type { Restaurant, Template } from '../types';
 import SCENES from '../scenes.json';
 
 import styles from './EditorModal.module.css';
-
 
 interface EditorModalProps {
   isOpen: boolean;
@@ -114,7 +113,7 @@ export default function EditorModal({
             });
 
             // Load scene
-            await cesdk.load(sceneToLoad);
+            await cesdk.loadFromString(sceneToLoad);
 
             // Apply restaurant variables and colors if restaurant is selected.
             // Variables are not persisted in the scene string and must be set
