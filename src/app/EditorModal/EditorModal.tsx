@@ -57,6 +57,12 @@ export default function EditorModal({
     };
   }, [isOpen]);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    return () => {
+    };
+  }, [isOpen]);
+
   // Handle Escape key
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -86,6 +92,7 @@ export default function EditorModal({
           className={styles.container}
           config={editorBaseConfig}
           init={async (cesdk) => {
+
             // Initialize appropriate editor configuration based on mode
             if (selectedRestaurant) {
               await initMultiImageGenerationDesignEditor(cesdk);
@@ -94,9 +101,13 @@ export default function EditorModal({
             }
 
             // Set editor title
-            cesdk.i18n.setTranslations({
-              en: { 'common.title': title }
-            });
+            cesdk.ui.updateOrderComponent(
+              {
+                in: 'ly.img.navigation.bar',
+                match: { id: 'ly.img.title.navigationBar' }
+              },
+              { title }
+            );
 
             // Add back button
             cesdk.ui.insertOrderComponent(
