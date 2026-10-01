@@ -12,7 +12,10 @@ import type { Configuration } from '@cesdk/cesdk-js';
 import type CreativeEngine from '@cesdk/engine';
 import { createRoot } from 'react-dom/client';
 
-import { initMultiImageGenerationHeadlessEngine } from './imgly';
+import {
+  initMultiImageGenerationHeadlessEngine,
+  registerMultiImageGenerationAssetSources
+} from './imgly';
 import App from './app/App';
 
 // ============================================================================
@@ -27,7 +30,6 @@ const config: Partial<Configuration> = {
 
 
   // Development: use local assets when CESDK_USE_LOCAL is set
-  
 };
 
 // ============================================================================
@@ -40,9 +42,8 @@ async function main(): Promise<void> {
     license: config.license,
     baseURL: config.baseURL
   });
+  await registerMultiImageGenerationAssetSources(engine);
 
-  // Debug access (remove in production)
-  (window as unknown as { engine: CreativeEngine }).engine = engine;
 
   // Render application with initialized instances
   const container = document.getElementById('root');
