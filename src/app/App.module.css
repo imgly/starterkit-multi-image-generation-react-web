@@ -124,6 +124,7 @@
 }
 
 
+
 :global(body.no-scroll) {
   overflow: hidden;
 }
@@ -148,6 +149,7 @@
   padding: 2rem;
   gap: 48px;
 }
+
 
 
 @media (max-width: 650px) {
