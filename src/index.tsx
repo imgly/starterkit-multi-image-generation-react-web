@@ -17,6 +17,7 @@ import {
   registerMultiImageGenerationAssetSources
 } from './imgly';
 import App from './app/App';
+import '@fontsource-variable/inter';
 
 // ============================================================================
 // Configuration
