@@ -69,7 +69,7 @@ export class AdvancedEditorConfig implements EditorPlugin {
       // The CE.SDK generation the calls below were written for. Pinned to a
       // literal at publish time, so upgrading CE.SDK in a copy of this kit
       // keeps the editor behaving as it did when the kit was taken.
-      cesdk.setEditorCompatibilityVersion('1.86.2');
+      cesdk.setEditorCompatibilityVersion('1.87.0-rc.2');
       // #endregion
 
       // #region Role
@@ -80,12 +80,6 @@ export class AdvancedEditorConfig implements EditorPlugin {
       // #region Theme
       // Dark theme for Creator mode (template design)
       cesdk.ui.setTheme('dark');
-      // #endregion
-
-      // #region Advanced View Mode
-      // Set advanced view mode for professional editing capabilities
-      // This enables all advanced features and UI elements
-      cesdk.ui.setView('advanced');
       // #endregion
 
       // #region Feature Configuration
