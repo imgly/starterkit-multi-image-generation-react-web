@@ -19,9 +19,9 @@ export function hexToRgba(hex: string): RgbaColor {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   if (!result) return { r: 0, g: 0, b: 0, a: 1 };
   return {
-    r: parseInt(result[1], 16) / 255,
-    g: parseInt(result[2], 16) / 255,
-    b: parseInt(result[3], 16) / 255,
+    r: parseInt(result[1]!, 16) / 255,
+    g: parseInt(result[2]!, 16) / 255,
+    b: parseInt(result[3]!, 16) / 255,
     a: 1
   };
 }
