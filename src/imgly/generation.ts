@@ -163,7 +163,7 @@ export async function generateAssets(
   onAssetUpdate: (index: number, asset: GeneratedAsset) => void
 ): Promise<void> {
   for (let index = 0; index < templates.length; index++) {
-    const template = templates[index];
+    const template = templates[index]!;
 
     try {
       await fillTemplate(engine, scenes, template.sceneKey, restaurant);
